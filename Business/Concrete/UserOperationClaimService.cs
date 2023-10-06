@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Dtos.UserOperationClaimDtos;
 using Business.Models;
 using Core.Persistence.Dynamic;
 using Core.Persistence.Paging;
@@ -23,6 +24,13 @@ namespace Business.Concrete
 		{
 			_userOperationClaimRepository = userOperationClaimRepository;
 			_mapper = mapper;
+		}
+
+
+		public async Task<UserOperationClaimDto> GetByIdAsync()
+		{
+			UserOperationClaim response = await _userOperationClaimRepository.GetWithIncludeAsync(predicate: u => u.UserId == 3, include: x => x.Include(data => data.User).Include(data => data.OperationClaim));
+			return null;
 		}
 
 		public async Task<UserOperationCliamsListModel> GetAll(PageRequest pageRequest, Dynamic? dynamic)

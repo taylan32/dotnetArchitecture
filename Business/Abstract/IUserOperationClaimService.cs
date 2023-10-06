@@ -1,4 +1,5 @@
-﻿using Business.Models;
+﻿using Business.Dtos.UserOperationClaimDtos;
+using Business.Models;
 using Core.Persistence.Dynamic;
 using Core.Persistence.Paging;
 using Entities;
@@ -13,5 +14,6 @@ namespace Business.Abstract
 	public interface IUserOperationClaimService
 	{
 		Task<UserOperationCliamsListModel> GetAll(PageRequest pageRequest, Dynamic? dynamic);
+		Task<UserOperationClaimDto> GetByIdAsync();
 	}
 }

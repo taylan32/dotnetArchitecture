@@ -64,6 +64,18 @@ namespace Core.Persistence.Repositories
 		{
 			return Context.Set<TEntity>();
 		}
+		public async Task<TEntity?> GetWithIncludeAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
+		{
+			IQueryable<TEntity> queryable = Query();
+			if (include != null) queryable = include(queryable);
+			return await queryable.FirstOrDefaultAsync(predicate);
+		}
+		public TEntity? GetWithInclude(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
+		{
+			IQueryable<TEntity> queryable = Query();
+			if (include != null) queryable = include(queryable);
+			return queryable.FirstOrDefault(predicate);
+		}
 
 		public async Task<TEntity> AddAsync(TEntity entity)
 		{

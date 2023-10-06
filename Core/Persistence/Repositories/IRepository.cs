@@ -13,7 +13,7 @@ namespace Core.Persistence.Repositories
 	public interface IRepository<T> : IQuery<T> where T : Entity
 	{
 		T Get(Expression<Func<T, bool>> predicate);
-
+		T GetWithInclude(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 		IPaginate<T> GetList(Expression<Func<T, bool>>? predicate = null,
 							 Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
 							 Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,

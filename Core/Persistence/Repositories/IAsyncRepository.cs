@@ -22,6 +22,7 @@ namespace Core.Persistence.Repositories
 											 Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
 											 int index = 0, int size = 10, bool enableTracking = true,
 											 CancellationToken cancellationToken = default);
+		Task<T?> GetWithIncludeAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 
 		Task<T> AddAsync(T entity);
 		Task<T> UpdateAsync(T entity);

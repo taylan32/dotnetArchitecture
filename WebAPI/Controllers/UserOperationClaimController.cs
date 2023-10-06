@@ -22,5 +22,11 @@ namespace WebAPI.Controllers
 		{
 			return Ok(await _userOperationClaimService.GetAll(pageRequest, dynamic));
 		}
+
+		[HttpGet("test")]
+		public async Task<IActionResult> GetTest()
+		{
+			return Ok(await _userOperationClaimService.GetByIdAsync());
+		}
 	}
 }
